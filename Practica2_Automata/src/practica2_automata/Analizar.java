@@ -19,7 +19,6 @@ public class Analizar {
     private ArrayList<String> arrLexema;
     private ArrayList<String> arrToken;
     private ArrayList<String> arrTipo;
-    private ArrayList<String> arrValidar;
     
     
     private int indice;
@@ -41,7 +40,6 @@ public class Analizar {
         arrToken = new ArrayList<>();
         arrTipo = new ArrayList<>();
         this.dato = dato;
-        arrValidar = new ArrayList<>();
         concatenar="";
         
     }
@@ -152,7 +150,6 @@ public class Analizar {
                     }else{
                     lexema = ""+letra;
                     arrLexema.add(lexema);
-                    arrValidar.add(lexema);
                     estado = 4;}
                 }else{
                     lexema = "" + letra; 
@@ -190,11 +187,11 @@ public class Analizar {
                     estado = 5;
                     lexema = ""+ letra;
                     arrLexema.add(lexema);
-                    arrValidar.add(lexema);
+         
                 }else if(codigoascii == 93){
                     lexema = "" + letra;
                     arrLexema.add(lexema);
-                    arrValidar.add(lexema);
+            
                 }else{
                     lexema = ""+ letra;
                     arrError.add(lexema);
