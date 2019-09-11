@@ -97,8 +97,9 @@ public class Analizar {
                     arrTipo.add(lexema);
                 }else{
                     if(codigoascii == 32){
+                        
                         estado = 2;   
-             
+                        indice--;
                     }else{
                         arrError.add(String.valueOf(letra));
                     }
@@ -106,27 +107,34 @@ public class Analizar {
              break;
              case 2:
                  concatenar = arrTipo.stream().map(String::valueOf).collect(Collectors.joining());
-                     if (concatenar.equals("int")) {
+                 System.err.println(textoLimpio.length());
+                 System.err.println(indice+1);
+                 int contador =indice+1;
+                 if(codigoascii == 32 && contador==textoLimpio.length()){
+                     lexema = "" + letra;
+                     arrError.add(lexema);
+                 }else{
+                     
+                 if (concatenar.equals("int")) {
                         estado = 3;
-                        indice--;
+                   
                      }
                      else if (concatenar.equals("float")) {
                         estado = 3;
-                        indice--;
+             
                      }
                      else if (concatenar.equals("String")) {
                         estado = 3;
-                        indice--;
+               
                      }
                      else if (concatenar.equals("char")) {
                         estado = 3;
-                        indice--;
-                     }
+                      }
                     else {
                     lexema = "" + letra;
                     arrError.add(lexema);
                  }
-                 
+                 }
              break;
               case 3:
                 if((codigoascii >=65 && codigoascii <=90) 
@@ -135,9 +143,13 @@ public class Analizar {
                     lexema = "" + letra;
                     arrLexema.add(lexema);
                 }else if(codigoascii == 91){
+                    if(codigoascii == 91 && indice+1 == textoLimpio.length()){
+                        lexema = "" + letra;
+                        arrError.add(lexema);
+                    }else{
                     lexema = ""+letra;
                     arrLexema.add(lexema);
-                    estado = 4;
+                    estado = 4;}
                 }else{
                     lexema = "" + letra; 
                     arrError.add(lexema);
