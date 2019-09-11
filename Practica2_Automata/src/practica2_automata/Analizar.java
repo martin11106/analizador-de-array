@@ -150,15 +150,15 @@ public class Analizar {
                         indice--;
                      }
                      else if (concatenar.equals("float")) {
-                        estado = 8;
+                        estado = 5;
                         indice--;
                      }
                      else if (concatenar.equals("String")) {
-                        estado = 6;
+                        estado = 5;
                         indice--;
                      }
                      else if (concatenar.equals("char")) {
-                        estado = 7;
+                        estado = 5;
                         indice--;
                      }
                  else if(codigoascii == 46){
@@ -167,7 +167,9 @@ public class Analizar {
                  }
              break;
              case 5:
-                if((codigoascii>=48 && codigoascii <=57)) {
+                if((codigoascii>=48 && codigoascii <=57)
+                        ||(codigoascii >=65 && codigoascii <=90) 
+                            || (codigoascii >= 97 && codigoascii <= 122)) {
                     estado = 5;
                     lexema = ""+ letra;
                     arrLexema.add(lexema);
@@ -179,73 +181,6 @@ public class Analizar {
                     arrError.add(lexema);
                 }
             break;
-             case 6:
-              if(((codigoascii >=65 && codigoascii <=90) 
-                     || (codigoascii >= 97 && codigoascii <= 122))) {
-                    estado = 6;
-                    lexema = ""+ letra;
-                    arrLexema.add(lexema);
-                }else if(codigoascii == 93){
-                    lexema = "" + letra;
-                    arrLexema.add(lexema);
-                }else{
-                    lexema = ""+ letra;
-                    arrError.add(lexema);
-                }
-                 break;
-               case 7:
-              if(((codigoascii >=65 && codigoascii <=90) 
-                     || (codigoascii >= 97 && codigoascii <= 122))) {
-                    estado = 7;
-                    lexema = ""+ letra;
-                    arrLexema.add(lexema);
-                }else if(codigoascii == 46){
-                    estado = 7;
-                    lexema = "" + letra;
-                }else if(codigoascii == 93){
-                    lexema = "" + letra;
-                    arrLexema.add(lexema);
-                }else{
-                    lexema = ""+ letra;
-                    arrError.add(lexema);
-                }
-                 break;
-              case 8:
-                if((codigoascii>=48 && codigoascii <=57)) {
-                    estado = 8;
-                    lexema = ""+ letra;
-                    arrLexema.add(lexema);
-                }else if(codigoascii == 46){
-                    estado = 9;
-                    indice--;
-                }else if(codigoascii == 93){
-                    lexema = "" + letra;
-                    arrLexema.add(lexema);
-                }else{
-                    lexema = ""+ letra;
-                    arrError.add(lexema);
-                }
-                 break;
-              case 9:
-                 if (textoLimpio.endsWith(".")) {
-                    arrError.add(String.valueOf(letra));
-                 }
-                 else if(codigoascii == 46){
-                    estado = 8;
-                    lexema = "" + letra;
-                    arrLexema.add(lexema);
-                 }
-                  break;
-              case 10:
-                   if((codigoascii>=48 && codigoascii <=57)) {
-                    estado = 8;
-                    lexema = ""+ letra;
-                    arrLexema.add(lexema);
-                }else{
-                    lexema = ""+ letra;
-                    arrError.add(lexema);
-                   }
-                  break;
             }
             
         }
