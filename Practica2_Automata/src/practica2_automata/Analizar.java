@@ -27,7 +27,6 @@ public class Analizar {
     private String dato;
     private String finalText = "";
     private int pos = 0;
-    private String identificador = "";
     private String concatenar;
 
     public Analizar(String dato) {
@@ -64,7 +63,6 @@ public class Analizar {
         for (indice = 0; indice < textoLimpio.length(); indice++) {
             char letra = textoLimpio.charAt(indice);
             int codigoascii = letra;
-            identificador = identificador.concat(String.valueOf(letra));
             switch (estado) {
                 case 0:
                     if ((codigoascii >= 65 && codigoascii <= 90)
@@ -168,14 +166,26 @@ public class Analizar {
                     }
                     break;
                 case 5:
-                    if ((codigoascii >= 48 && codigoascii <= 57)
-                            || (codigoascii >= 65 && codigoascii <= 90)
-                            || (codigoascii >= 97 && codigoascii <= 122)) {
-
+                    if ((codigoascii >= 48 && codigoascii <= 57)) {
                         estado = 5;
                         lexema = "" + letra;
                         arrLexema.add(lexema);
 
+                    } else if (codigoascii == 93) {
+                        lexema = "" + letra;
+                        arrLexema.add(lexema);
+
+                    } else {
+                        estado = 6;
+                        indice--;
+                    }
+                    break;
+                case 6:
+                    if ((codigoascii >= 65 && codigoascii <= 90)
+                            || (codigoascii >= 97 && codigoascii <= 122)) {
+                        estado = 6;
+                        lexema = "" + letra;
+                        arrLexema.add(lexema);
                     } else if (codigoascii == 93) {
                         lexema = "" + letra;
                         arrLexema.add(lexema);
