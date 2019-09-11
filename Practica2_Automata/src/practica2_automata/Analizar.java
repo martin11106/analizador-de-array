@@ -132,6 +132,7 @@ public class Analizar {
                         estado = 3;
                         lexema = "" + letra;
                         arrLexema.add(lexema);
+                        arrToken.add(lexema);
                     } else if (codigoascii == 91) {
                         if (codigoascii == 91 && indice + 1 == textoLimpio.length()) {
                             lexema = "" + letra;
@@ -199,6 +200,10 @@ public class Analizar {
 
         }
         if (!arrLexema.get(arrLexema.size() - 1).equals("]")) {
+            lexema = "" + lexema;
+            arrError.add(lexema);
+        }
+        if(arrToken.isEmpty()){
             lexema = "" + lexema;
             arrError.add(lexema);
         }
