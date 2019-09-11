@@ -108,8 +108,6 @@ public class Analizar {
              break;
              case 2:
                  concatenar = arrTipo.stream().map(String::valueOf).collect(Collectors.joining());
-                 System.err.println(textoLimpio.length());
-                 System.err.println(indice+1);
                  int contador =indice+1;
                  if(codigoascii == 32 && contador==textoLimpio.length()){
                      lexema = "" + letra;
